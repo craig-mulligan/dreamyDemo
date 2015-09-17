@@ -26,7 +26,11 @@ The recipe for this project is as follows:
 
 
 ### Setup Saleforce credentials
-For this example, you will need a developer account on salesforce. If you don't already have one, head over [here](https://login.salesforce.com/) and get one.
+1. Sign up for a Developer Edition
+ - Go to https://developer.salesforce.com/signup
+ - Fill out the form. Note - your username has to look like an email, but it doesn't have to be your email - e.g. I use something@devorg.pat for mine.
+ - Look for the 'login confirmation' email. Click the link in the email, set your password and recovery question
+
 In order to authenticate requests from outside of the Salesforce organisation IP range, we will need to get our security token.
 
 1. Getting SF security token
@@ -41,14 +45,10 @@ In order to authenticate requests from outside of the Salesforce organisation IP
 You should now be able to click on the "identify device" button and see the little green LED flash. We are now ready to start pushing code...but lets first setup some electronics.
 
 ### Salesforce case logging setup
-1. Sign up for a Developer Edition
- - Go to https://developer.salesforce.com/signup
- - Fill out the form. Note - your username has to look like an email, but it doesn't have to be your email - e.g. I use something@devorg.pat for mine.
- - Look for the 'login confirmation' email. Click the link in the email, set your password and recovery question
 
-2. Create a connected app; for scope, you'll want 'api'. For our purposes, the callback url doesn't matter, so you can just put http://localhost for that field, and you can leave the logo and icon blank.
+1. Create a connected app; for scope, you'll want 'api'. For our purposes, the callback url doesn't matter, so you can just put http://localhost for that field, and you can leave the logo and icon blank.
 
-3. Create a PushTopic for Case updates
+2. Create a PushTopic for Case updates
 
  - Select Your Name | Developer Console.
  - Click Debug | Open Execute Anonymous Window.
@@ -67,7 +67,7 @@ pushTopic.NotifyForFields = 'Referenced';
 insert pushTopic;
 ```
 
-4. Upload streaming.zip (attached) as a Static Resource
+3. Upload streaming.zip (attached) as a Static Resource
  - Setup | Develop | Static Resources
    - Click 'New' (not 'Create New View!')
    - Name: streaming
@@ -76,7 +76,7 @@ insert pushTopic;
    - Hit 'Save'
    - [streaming.zip](https://dl.dropboxusercontent.com/u/9795699/streaming.zip "streaming.zip")
 
-5. Create CaseController and CasePage to show most recent cases
+4. Create CaseController and CasePage to show most recent cases
  - Setup | Develop | Apex Classes
  - Hit 'New'
  - Paste in the following code:
