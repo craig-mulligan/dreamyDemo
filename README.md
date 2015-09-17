@@ -33,20 +33,22 @@ The recipe for this project is as follows:
 
 In order to authenticate requests from outside of the Salesforce organisation IP range, we will need to get our security token.
 
-1. Getting SF security token
+2. Getting SF security token
  + Go to your name and click
  + Select My Settings
  + Select Personal
  + Sixth option is "Reset My Security Token"
 ... you should then get an email with your security token, note it down somewhere because we will use it soon.
 
-2. Now in your newly created app on the resin.io dashboard, Select environmental variables. Here we can create enviroment variables to use in our code running on the raspberry pi. For this app we will need to create one for `SF_USERNAME`, `SF_PASSWORD` and `SF_SEC_TOKEN`. Optionally you can include sample interval and threshold.
+3. Now in your newly created app on the resin.io dashboard, Select environmental variables. Here we can create enviroment variables to use in our code running on the raspberry pi. For this app we will need to create one for `SF_USERNAME`, `SF_PASSWORD` and `SF_SEC_TOKEN`. Optionally you can include sample interval and threshold.
 
 You should now be able to click on the "identify device" button and see the little green LED flash. We are now ready to start pushing code...but lets first setup some electronics.
 
 ### Salesforce case logging setup
 
-1. Create a connected app; for scope, you'll want 'api'. For our purposes, the callback url doesn't matter, so you can just put http://localhost for that field, and you can leave the logo and icon blank.
+1. Create a connected app;
+  * Setup | Create | Connected apps | New
+for scope, you'll want 'api'. For our purposes, the callback url doesn't matter, so you can just put http://localhost for that field, and you can leave the logo and icon blank.
 
 2. Create a PushTopic for Case updates
 
@@ -68,16 +70,16 @@ insert pushTopic;
 ```
 
 3. Upload streaming.zip (attached) as a Static Resource
- - Setup | Develop | Static Resources
+   - Download - [streaming.zip](https://www.dropbox.com/s/4nhpja9dqi6hrqq/streaming.zip "streaming.zip")
+   - Setup | Develop | Manage Static Resources
    - Click 'New' (not 'Create New View!')
    - Name: streaming
    - select streaming.zip (attached)
    - change 'Cache Control' to public
    - Hit 'Save'
-   - [streaming.zip](https://dl.dropboxusercontent.com/u/9795699/streaming.zip "streaming.zip")
 
 4. Create CaseController and CasePage to show most recent cases
- - Setup | Develop | Apex Classes
+ - Setup | Develop | Manage Apex Classes
  - Hit 'New'
  - Paste in the following code:
 
@@ -157,13 +159,13 @@ Extract it. Then cd into it in the git bash.
 
 ```
 cd /dreamyDemo/dreamyDemo
-``` 
+```
 
-add resin remote by copying it from the dashboard on the top right. 
+add resin remote by copying it from the dashboard on the top right.
 
 ```
 git remote add <users-resin-git-endpoint>
-``` 
+```
 
 Then run
 
